@@ -1,7 +1,9 @@
 package com.animatrixz.alleviatesplit;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -32,7 +34,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        doOCR();
+//        doOCR();
+        Intent i = new Intent(this, VisionOCR.class);
+        startActivity(i);
     }
 
 
@@ -70,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         prepareTessData();
         String path = getExternalFilesDir("/").getPath() + "/";
         mTess.init(path, "eng");
-        Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.image);
+        Bitmap bm = BitmapFactory.decodeResource(getResources(), R.raw.image);
 
         mTess.setImage(bm);
         String ans = mTess.getUTF8Text();
